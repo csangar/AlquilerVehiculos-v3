@@ -122,13 +122,16 @@ public class Vehiculos implements IVehiculos {
 		elementoVehiculo.setAttribute(MODELO, vehiculo.getModelo());
 		if (vehiculo instanceof Turismo turismo) {
 			elementoVehiculo.setAttribute(CILINDRADA, String.valueOf(turismo.getCilindrada()));
+			elementoVehiculo.setAttribute(TIPO, TURISMO);
 		}
 		if (vehiculo instanceof Autobus autobus) {
 			elementoVehiculo.setAttribute(CILINDRADA, String.valueOf(autobus.getPlazas()));
+			elementoVehiculo.setAttribute(CILINDRADA, AUTOBUS);
 		}
 		if (vehiculo instanceof Furgoneta furgoneta) {
 			elementoVehiculo.setAttribute(PMA, String.valueOf(furgoneta.getPma()));
 			elementoVehiculo.setAttribute(PLAZAS, String.valueOf(furgoneta.getPlazas()));
+			elementoVehiculo.setAttribute(TIPO, FURGONETA);
 		}
 		return elementoVehiculo;
 	}

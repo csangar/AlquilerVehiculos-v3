@@ -16,7 +16,8 @@ import org.w3c.dom.NodeList;
 
 public class Clientes implements IClientes {
 	private List<Cliente> coleccionClientes;
-	private static final File FICHERO_CLIENTES = new  File(String.format("%s%s%s", "datos", File.separator, "clientes.xml"));
+	private static final File FICHERO_CLIENTES = new File(
+			String.format("%s%s%s", "datos", File.separator, "clientes.xml"));
 	private static final String RAIZ = "clientes";
 	private static final String CLIENTE = "cliente";
 	private static final String NOMBRE = "nombre";
@@ -29,22 +30,22 @@ public class Clientes implements IClientes {
 	}
 
 	static Clientes getInstancia() {
-		if(instancia == null) {
+		if (instancia == null) {
 			instancia = new Clientes();
 		}
 		return instancia;
 	}
 
 	public void comenzar() {
-			Document documento = UtilidadesXml.leerXmlDeFichero(FICHERO_CLIENTES);
-			if (documento == null) {
-				throw new NullPointerException("El documento no puede ser nulo");
-			} else {
-				leerDom(documento);
-			}
+		Document documento = UtilidadesXml.leerXmlDeFichero(FICHERO_CLIENTES);
+		if (documento == null) {
+			throw new NullPointerException("El documento no puede ser nulo");
+		} else {
+			leerDom(documento);
+		}
 	}
 
-	private void leerDom(Document documentoXML)  {
+	private void leerDom(Document documentoXML) {
 		NodeList clientes = documentoXML.getElementsByTagName(CLIENTE);
 		for (int i = 0; i < clientes.getLength(); i++) {
 			Node cliente = clientes.item(i);
@@ -52,10 +53,10 @@ public class Clientes implements IClientes {
 				try {
 					insertar(getCliente((Element) cliente));
 				} catch (Exception e) {
-					System.out.println("Fallo al leer el cliente nº "+ i);
+					System.out.println("Fallo al leer el cliente nº " + i);
 				}
 			}
-		}	
+		}
 	}
 
 	private Cliente getCliente(Element elemento) {
@@ -68,7 +69,7 @@ public class Clientes implements IClientes {
 	public void terminar() {
 		Document documento = crearDom();
 		UtilidadesXml.escribirXmlAFichero(documento, FICHERO_CLIENTES);
-		//System.out.println("¡FIN!");
+		// System.out.println("¡FIN!");
 	}
 
 	private Document crearDom() {
@@ -87,9 +88,9 @@ public class Clientes implements IClientes {
 
 	private Element getElemento(Document documentoXml, Cliente cliente) {
 		Element elementoCliente = documentoXml.createElement(CLIENTE);
-		 elementoCliente.setAttribute(NOMBRE, cliente.getNombre());
-		 elementoCliente.setAttribute(DNI, cliente.getDni());
-		 elementoCliente.setAttribute(TELEFONO , cliente.getTelefono());
+		elementoCliente.setAttribute(NOMBRE, cliente.getNombre());
+		elementoCliente.setAttribute(DNI, cliente.getDni());
+		elementoCliente.setAttribute(TELEFONO, cliente.getTelefono());
 		return elementoCliente;
 	}
 

@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public abstract class Vehiculo {
 
-	private static final String ER_MARCA = "([A-Z][a-z]+([ -]?[A-Z][a-z]+)?)|[A-Z]+";
-	private static final String ER_MATRICULA = "[0-9]{4}[^AEIOU|^a-z]{3}";
+	public static final String ER_MARCA = "([A-Z][a-z]+([ -]?[A-Z][a-z]+)?)|[A-Z]+";
+	public static final String ER_MATRICULA = "[0-9]{4}[^AEIOU|^a-z]{3}";
 	private String marca;
 	private String modelo;
 	private String matricula;
